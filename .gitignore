@@ -1,0 +1,6 @@
+.idea
+.pytest-cache
+__pycache__
+latest_logs
+*.log
+*.db

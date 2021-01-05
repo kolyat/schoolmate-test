@@ -1,0 +1,70 @@
+{
+  "target": {
+    "default": {
+      "protocol": "http",
+      "server": "localhost:8000",
+      "users": {
+        "default": {
+          "username": "sam",
+          "password": "sam",
+          "mail_server": "pop.gmail.com"
+        },
+        "admin": {
+          "username": "admin",
+          "password": "nimda",
+          "mail_server": "pop.gmail.com"
+        }
+      }
+    }
+  },
+  "logging": {
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+      "standard": {
+        "format": "%(asctime)s | [%(levelname)8s] | %(module)s.%(funcName)s(%(lineno)d) - %(message)s"
+      },
+      "precise": {
+        "format": "%(created)10.7f : %(asctime)s | [%(levelname)8s] | %(name)27s | %(filename)s - %(module)s.%(funcName)s(%(lineno)d) - %(message)s",
+        "datefmt": "%Y-%m-%d %H:%M:%S%z"
+      }
+    },
+    "handlers": {
+      "console" : {
+        "class": "logging.StreamHandler",
+        "formatter": "standard",
+        "level": "INFO",
+        "stream": "ext://sys.stdout"
+      },
+      "http_console" : {
+        "class": "logging.StreamHandler",
+        "formatter": "standard",
+        "level": "DEBUG",
+        "stream": "ext://sys.stdout"
+      },
+      "http_file": {
+        "class": "logging.FileHandler",
+        "filename": "./logs/http.log",
+        "formatter": "standard",
+        "level": "DEBUG",
+        "mode": "a"
+      }
+    },
+    "loggers": {
+      "urllib3": {
+        "handlers": ["http_file"],
+        "level": "DEBUG",
+        "propagate": false
+      },
+      "http.client": {
+        "handlers": ["http_file"],
+        "level": "DEBUG",
+        "propagate": false
+      }
+    },
+    "root": {
+      "handlers": ["console"],
+      "level": "INFO"
+    }
+  }
+}

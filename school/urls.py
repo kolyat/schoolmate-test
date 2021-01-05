@@ -1,0 +1,5 @@
+STATUS = '/main/status/'
+SCHOOL_FORMS = '/main/forms/'
+SCHEDULE_YEAR = '/main/schedule/year/'
+SCHEDULE_DAY = '/main/schedule/day/'
+SCHOOL_SUBJECTS = '/main/subjects/'
