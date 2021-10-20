@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import pytest
 
 import config
@@ -31,6 +32,7 @@ def test_get_user_info(apiclient):
     response = apiclient.get(u(urls.USER_INFO))
     assert response.status_code == 200
     body = response.json()
+    logging.debug(body)
     assert data_test_api_user_info.validate(body) is not None
 
 
@@ -53,8 +55,10 @@ def test_change_user_language(apiclient, payload: dict, response_status: int,
     """
     response = apiclient.patch(u(urls.USER_INFO), data=payload)
     assert response.status_code == response_status
-    body = response.json()
-    assert set(response_body.items()) <= set(body.items())
+    if response.status_code < 300:
+        body = response.json()
+        logging.debug(body)
+        assert set(response_body.items()) <= set(body.items())
 
 
 if __name__ == '__main__':

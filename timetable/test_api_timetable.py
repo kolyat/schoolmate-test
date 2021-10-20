@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import pytest
 
 import config
@@ -41,6 +42,7 @@ def test_positive_cases(apiclient, url: str, response_status: int, validate):
     response = apiclient.get(u(url))
     assert response.status_code == response_status
     body = response.json()
+    logging.debug(body)
     assert validate(body) is not None
 
 
@@ -64,6 +66,7 @@ def test_empty_cases(apiclient, url: str , response_status: int,
     response = apiclient.get(u(url))
     assert response.status_code == response_status
     body = response.json()
+    logging.debug(body)
     assert body == expected_body
 
 

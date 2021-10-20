@@ -15,6 +15,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import copy
+import datetime
+import logging
 import pytest
 
 import config
@@ -22,6 +24,9 @@ from . import urls, data_test_api_diary
 
 
 u = config.current_config.full_url
+
+t = datetime.date.today()
+d = datetime.timedelta(days=1)
 
 
 @pytest.mark.parametrize('username, password, response_status',
@@ -43,9 +48,10 @@ def test_retrieve(apiclient_init,
     :type response_status: int
     """
     apiclient_init.login(username, password)
-    url = u(urls.DIARY) + '2021/02/29/'
+    url = u(urls.DIARY) + f'{t.year}/{t.month}/{t.day}/'
     response = apiclient_init.get(url)
     assert response.status_code == response_status
+    logging.debug(response.json())
     apiclient_init.logout()
 
 
@@ -62,12 +68,14 @@ def test_positive_cases(apiclient, payload: dict, response_status: int):
     :param response_status: expected response status
     :type response_status: int
     """
-    url = u(urls.DIARY) + '2021/03/01/'
+    _t = t + d
+    url = u(urls.DIARY) + f'{_t.year}/{_t.month}/{_t.day}/'
     data = copy.deepcopy(data_test_api_diary.template)
     data.update(payload)
     response = apiclient.post(url, data=data)
     assert response.status_code == response_status
     body = response.json()
+    logging.debug(body)
     assert data_test_api_diary.validate(body) is not None
     assert set(payload.items()) <= set(body.items())
 
@@ -85,10 +93,12 @@ def test_negative_cases(apiclient, payload: dict, response_status: int):
     :param response_status: expected response status
     :type response_status: int
     """
-    url = u(urls.DIARY) + '2021/03/02/'
+    _t = t + d * 2
+    url = u(urls.DIARY) + f'{_t.year}/{_t.month}/{_t.day}/'
     data = copy.deepcopy(data_test_api_diary.template)
     data.update(payload)
     response = apiclient.post(url, data=data)
+    logging.debug(response.json())
     assert response.status_code == response_status
 
 
@@ -105,8 +115,10 @@ def test_incomplete_payload(apiclient, payload: dict, response_status: int):
     :param response_status: expected response status
     :type response_status: int
     """
-    url = u(urls.DIARY) + '2021/03/03/'
+    _t = t + d * 3
+    url = u(urls.DIARY) + f'{_t.year}/{_t.month}/{_t.day}/'
     response = apiclient.post(url, data=payload)
+    logging.debug(response.json())
     assert response.status_code == response_status
 
 

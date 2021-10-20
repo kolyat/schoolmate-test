@@ -16,11 +16,14 @@
 
 from django.core.management import base
 
+from diary import models as diary_models
+
 
 def clear_diary():
     """remove all diary records
     """
     print('Remove DIARY app data...', end=' ', flush=True)
+    diary_models.DiaryRecord.objects.all().delete()
     print('OK')
 
 

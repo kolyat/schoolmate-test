@@ -70,8 +70,8 @@ validate = compile({
 
 lang_cases = (
     ({'language': 'de'}, 202, {'language': 'de'}),
-    ({'language': 'xxx'}, 400, {'code': 'invalid_choice'}),
-    ({'language': 123}, 400, {'code': 'invalid_choice'}),
-    ({'language': ''}, 400, {'code': 'invalid_choice'}),
-    ({}, 400, {'code': 'null'})
+    ({'language': 'xxx'}, 400, {}),
+    ({'language': 123}, 400, {}),
+    ({'language': ''}, 400, {}),
+    ({}, 400, {})
 )

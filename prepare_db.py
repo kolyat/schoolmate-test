@@ -29,7 +29,7 @@ APPS = (
 )
 
 
-if __name__ == '__main__':
+def prepare():
     import django
     django.setup()
     from django.conf import settings
@@ -39,3 +39,7 @@ if __name__ == '__main__':
         _db.clear(a)
     for a in APPS:
         _db.populate(a)
+
+
+if __name__ == '__main__':
+    prepare()

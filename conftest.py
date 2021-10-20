@@ -2,6 +2,12 @@ import pytest
 
 from utils import client
 import config
+import prepare_db
+
+
+@pytest.fixture(scope='session', autouse=True)
+def db_prepare():
+    prepare_db.prepare()
 
 
 @pytest.fixture(scope='session')

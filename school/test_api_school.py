@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import pytest
 
 import config
@@ -37,6 +38,7 @@ def test_endpoints(apiclient, url: str, validate):
     response = apiclient.get(u(url))
     assert response.status_code == 200
     body = response.json()
+    logging.debug(body)
     assert validate(body) is not None
 
 

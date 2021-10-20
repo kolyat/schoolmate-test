@@ -47,7 +47,7 @@
         "filename": "./logs/http.log",
         "formatter": "standard",
         "level": "DEBUG",
-        "mode": "a"
+        "mode": "w"
       }
     },
     "loggers": {

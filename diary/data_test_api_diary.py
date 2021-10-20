@@ -77,11 +77,11 @@ positive_cases = (
     ({'lesson_number': 3}, 201),
     ({'lesson_number': 1}, 201),
     ({'lesson_number': 7}, 201),
-    ({'subject': 'Алгебра'}, 201),
-    ({'subject': ' '}, 201),
-    ({'text': 'For testing'}, 201),
-    ({'text': rnd.random_str(9000)}, 201),
-    ({'text': ''}, 201)
+    ({'subject': 'Алгебра'}, 202),
+    ({'subject': ' '}, 202),
+    ({'text': 'For testing'}, 202),
+    ({'text': rnd.random_str(9000)}, 202),
+    ({'text': ''}, 202)
 )
 
 negative_cases = (
@@ -95,8 +95,8 @@ negative_cases = (
     ({'subject': 'no_subject'}, 400),
     ({'subject': None}, 400),
     ({'subject': 123}, 400),
-    ({'text': 123}, 201),
-    ({'text': None}, 201)
+    ({'text': 123}, 202),
+    ({'text': None}, 202)
 )
 
 incomplete_payload = (

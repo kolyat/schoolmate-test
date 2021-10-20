@@ -27,6 +27,7 @@ def clear_school():
     school_models.YearSchedule.objects.all().delete()
     school_models.SchoolYear.objects.all().delete()
     school_models.DailySchedule.objects.all().delete()
+    school_models.SchoolSubject.objects.all().delete()
     school_models.SchoolForm.objects.all().delete()
     school_models.FormNumber.objects.all().delete()
     school_models.FormLetter.objects.all().delete()
