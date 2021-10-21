@@ -35,7 +35,7 @@ How to use
    | ``virtualenv -p /usr/bin/python3.6 venv``
    | ``source venv/bin/activate``
 3. | Install requirements:
-   | pip install -r requirements.txt
+   | ``pip install -r requirements.txt``
 4. Set up ``schoolmate/settings.py``, ``config.json``, ``pytest.ini``.
 5. Run ``update_apps.sh``.
 6. Run ``pytest`` (``prepare_db.py`` is launched automatically).
