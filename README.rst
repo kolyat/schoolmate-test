@@ -21,7 +21,7 @@ Contents
 Requirements
 ============
 
-* Python 3.6 or higher
+* Python 3.8 or higher
 * Packages listed in ``requirements.txt``
 
 How to use
@@ -34,7 +34,7 @@ How to use
 2. Create and activate
    `virtual environment <https://docs.python-guide.org/dev/virtualenvs/>`_:
    ::
-     virtualenv -p /usr/bin/python3.6 venv
+     virtualenv -p /usr/bin/python3.8 venv
      source venv/bin/activate
 3. Install requirements:
    ::
