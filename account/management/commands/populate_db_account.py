@@ -30,7 +30,8 @@ def prepare_account():
     account_models.SchoolUser.objects.create_superuser(
         username='admin',
         password='nimda',
-        email='admin@school.edu'
+        email='admin@school.edu',
+        skin='flat'
     )
     print('OK')
     print('    {:.<25}...'.format('User "sam"'), end='', flush=True)
@@ -47,6 +48,8 @@ def prepare_account():
         last_name='Smith',
         birth_date=datetime.datetime.now(),
         school_form=school_form,
+        language='ru',
+        skin='contrast',
         is_superuser=False,
         is_staff=False,
         is_active=True

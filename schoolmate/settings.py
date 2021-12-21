@@ -42,11 +42,20 @@ DATABASES = {
     }
 }
 
-LANGUAGES = (
-    ('ru', 'Русский'),
-    ('en', 'English'),
-    ('de', 'Deutsch')
+LANGUAGES = (        # i =
+    ('ru', 'Русский'),  # 0
+    ('en', 'English'),  # 1
+    ('de', 'Deutsch')   # 2
 )
-LANGUAGE_CODE = LANGUAGES[0][0]
+LANGUAGE_CODE = LANGUAGES[0][0]  # LANGUAGES[i][0]
+
+SKINS = (                   # i =
+    ('compact',  'Compact'),   # 0
+    ('contrast', 'Contrast'),  # 1
+    ('flat',     'Flat'),      # 2
+    ('material', 'Material'),  # 3
+    ('mini',     'Mini')       # 4
+)
+DEFAULT_SKIN = SKINS[1][0]  # SKINS[i][0]
 
 LATEST_NEWS_COUNT = 300

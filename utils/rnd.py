@@ -21,6 +21,7 @@ from mimesis import enums, locales
 
 
 LANGUAGES = ('ru', 'en', 'de')
+SKINS = ('compact', 'contrast', 'flat', 'material', 'mini')
 FORM_NUMBERS = range(1, 12)
 FORM_LETTERS = 'АБ'
 
@@ -106,6 +107,7 @@ def new_schooluser() -> dict:
                                            start=1990, end=2000),
         'email': _person.email(),
         'language': random.choice(LANGUAGES),
+        'skin': random.choice(SKINS),
         'is_active': True,
         'is_staff': False,
         'is_superuser': False
