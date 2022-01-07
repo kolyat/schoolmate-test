@@ -31,6 +31,7 @@ def prepare_account():
         username='admin',
         password='nimda',
         email='admin@school.edu',
+        language='en',
         skin='flat'
     )
     print('OK')
@@ -48,7 +49,7 @@ def prepare_account():
         last_name='Smith',
         birth_date=datetime.datetime.now(),
         school_form=school_form,
-        language='ru',
+        language='de',
         skin='contrast',
         is_superuser=False,
         is_staff=False,
