@@ -123,9 +123,9 @@ endpoints = (
                 'properties': {
                     'description': {'type': 'string', 'minLength': 1},
                     'start_time': {'type': 'string',
-                                   'pattern': '\d{2}:\d{2}:\d{2}'},
+                                   'pattern': r'\d{2}:\d{2}:\d{2}'},
                     'end_time': {'type': 'string',
-                                 'pattern': '\d{2}:\d{2}:\d{2}'},
+                                 'pattern': r'\d{2}:\d{2}:\d{2}'},
                 },
                 'additionalProperties': False,
                 'required': ['description', 'start_time', 'end_time']

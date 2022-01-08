@@ -34,7 +34,7 @@ validate = compile({
         'email': {'type': 'string', 'format': 'idn-email'},
         'school_form': {
             'anyOf': [
-                {'type': 'string', 'pattern': '\d+\D+'},
+                {'type': 'string', 'pattern': r'\d+\D+'},
                 {'type': 'null'}
             ]
         },
