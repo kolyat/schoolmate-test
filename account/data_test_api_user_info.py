@@ -39,6 +39,7 @@ validate = compile({
             ]
         },
         'language': {'type': 'string', 'minLength': 2},
+        'skin': {'type': 'string', 'minLength': 2},
         'languages': {
             'type': 'array',
             'minItems': 1,
@@ -52,6 +53,20 @@ validate = compile({
                 'additionalProperties': False,
                 'required': ['language_code', 'language_name']
             }
+        },
+        'skins': {
+            'type': 'array',
+            'minItems': 1,
+            'uniqueItems': True,
+            'items': {
+                'type': 'object',
+                'properties': {
+                    'skin': {'type': 'string', 'minLength': 2},
+                    'skin_name': {'type': 'string', 'minLength': 2},
+                },
+                'additionalProperties': False,
+                'required': ['skin', 'skin_name']
+            }
         }
     },
     'additionalProperties': False,
@@ -64,14 +79,21 @@ validate = compile({
         'email',
         'school_form',
         'language',
-        'languages'
+        'skin',
+        'languages',
+        'skins'
     ]
 })
 
-lang_cases = (
+user_info_cases = (
     ({'language': 'de'}, 202, {'language': 'de'}),
     ({'language': 'xxx'}, 400, {}),
     ({'language': 123}, 400, {}),
-    ({'language': ''}, 400, {}),
-    ({}, 400, {})
+    ({'language': ''}, 202, {}),
+    ({'skin': 'material'}, 202, {'skin': 'material'}),
+    ({'skin': 'xxx'}, 400, {}),
+    ({'skin': 123}, 400, {}),
+    ({'skin': ''}, 202, {}),
+    ({'email': 'x@x.xx'}, 202, {}),
+    ({}, 202, {})
 )

@@ -37,10 +37,10 @@ def test_get_user_info(apiclient):
 
 
 @pytest.mark.parametrize('payload, response_status, response_body',
-                         data_test_api_user_info.lang_cases)
-def test_change_user_language(apiclient, payload: dict, response_status: int,
-                              response_body: dict):
-    """Change user language
+                         data_test_api_user_info.user_info_cases)
+def test_change_user_info(apiclient, payload: dict, response_status: int,
+                          response_body: dict):
+    """Change user info
 
     :param apiclient: :class:`utils.client.ApiClient` instance
 
