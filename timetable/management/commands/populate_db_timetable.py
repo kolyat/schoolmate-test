@@ -29,7 +29,7 @@ def prepare_timetable(forms=None):
                   school forms if not specified
     """
     print('Create data for TIMETABLE app:')
-    print('    {:.<25}...'.format('School forms for timetable'),
+    print('    {:.<30}...'.format('School forms for timetable'),
           end='', flush=True)
     _year = school_models.SchoolYear.objects.get(
         name=_db_data.SCHOOL_YEAR['name'])
@@ -46,7 +46,7 @@ def prepare_timetable(forms=None):
         year=_timetable_year, school_form=f) for f in _forms]
     [f.save() for f in _timetable_forms]
     print('OK')
-    print('    {:.<25}...'.format('Timetable'), end='', flush=True)
+    print('    {:.<30}...'.format('Timetable'), end='', flush=True)
     _subjects = school_models.SchoolSubject.objects.all()
     _classrooms = school_models.Classroom.objects.all()
     random.seed()

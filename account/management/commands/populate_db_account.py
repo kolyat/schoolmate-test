@@ -26,7 +26,7 @@ def prepare_account():
     """Generate account data
     """
     print('Create data for ACCOUNT app:')
-    print('    {:.<25}...'.format('Superuser "admin"'), end='', flush=True)
+    print('    {:.<30}...'.format('Superuser "admin"'), end='', flush=True)
     account_models.SchoolUser.objects.create_superuser(
         username='admin',
         password='nimda',
@@ -35,7 +35,7 @@ def prepare_account():
         skin='flat'
     )
     print('OK')
-    print('    {:.<25}...'.format('User "sam"'), end='', flush=True)
+    print('    {:.<30}...'.format('User "sam"'), end='', flush=True)
     form_number = school_models.FormNumber.objects.get(number=9)
     form_letter = school_models.FormLetter.objects.get(letter='Б')
     school_form = school_models.SchoolForm.objects.get(

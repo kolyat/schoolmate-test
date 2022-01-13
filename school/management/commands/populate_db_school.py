@@ -24,7 +24,7 @@ def prepare_school():
     """Generate model of a school
     """
     print('Create data for SCHOOL app:')
-    print('    {:.<25}...'.format('School forms'), end='', flush=True)
+    print('    {:.<30}...'.format('School forms'), end='', flush=True)
     for l in _db_data.FORM_LETTERS:
         school_models.FormLetter(letter=l).save()
     _letters = school_models.FormLetter.objects.all()
@@ -35,21 +35,21 @@ def prepare_school():
             school_models.SchoolForm(form_number=_number,
                                      form_letter=l).save()
     print('OK')
-    print('    {:.<25}...'.format('School subjects'), end='', flush=True)
+    print('    {:.<30}...'.format('School subjects'), end='', flush=True)
     for s in _db_data.SUBJECTS:
         school_models.SchoolSubject(subject=s).save()
     print('OK')
-    print('    {:.<25}...'.format('Daily schedule'), end='', flush=True)
+    print('    {:.<30}...'.format('Daily schedule'), end='', flush=True)
     for d in _db_data.DAILY_SCHEDULE:
         school_models.DailySchedule(**d).save()
     print('OK')
-    print('    {:.<25}...'.format('Year schedule'), end='', flush=True)
+    print('    {:.<30}...'.format('Year schedule'), end='', flush=True)
     _sy = school_models.SchoolYear(**_db_data.SCHOOL_YEAR)
     _sy.save()
     for y in _db_data.YEAR_SCHEDULE:
         school_models.YearSchedule(school_year=_sy, **y).save()
     print('OK')
-    print('    {:.<25}...'.format('Classrooms'), end='', flush=True)
+    print('    {:.<30}...'.format('Classrooms'), end='', flush=True)
     for c in _db_data.CLASSROOMS:
         school_models.Classroom(**c).save()
     print('OK')

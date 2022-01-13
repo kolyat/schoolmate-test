@@ -30,7 +30,7 @@ def prepare_news(number_of_articles=default_number):
     :param number_of_articles: number of news articles
     """
     print('Create data for NEWS app:')
-    print('    {:.<25}...'.format('{} articles'.format(number_of_articles)),
+    print('    {:.<30}...'.format('{} articles'.format(number_of_articles)),
           end='', flush=True)
     for _ in range(number_of_articles):
         article = rnd.new_article()

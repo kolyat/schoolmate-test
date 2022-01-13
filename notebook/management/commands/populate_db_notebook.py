@@ -27,7 +27,7 @@ def prepare_notebook():
     print('Create data for NOTEBOOK app:')
     user = account_models.SchoolUser.objects.get(username='sam')
     n = 5
-    print('    {:.<25}...'.format(f'sam - {n} records'), end='', flush=True)
+    print('    {:.<30}...'.format(f'sam - {n} records'), end='', flush=True)
     for i in range(n):
         note = rnd.new_note()
         notebook_models.NotebookRecord(
