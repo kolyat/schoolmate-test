@@ -126,3 +126,17 @@ def new_article() -> dict:
         'title': _text.title(),
         'content': _text.text(random.randint(3, 9))
     }
+
+
+def new_note() -> dict:
+    """Generate notebook record
+
+    :return: dictionary with title and text
+    :rtype: dict
+    """
+    random.seed()
+    _text = mimesis.Text()
+    return {
+        'title': _text.quote(),
+        'text': _text.text(random.randint(30, 90))
+    }

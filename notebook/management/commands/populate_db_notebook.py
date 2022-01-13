@@ -15,12 +15,26 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.core.management import base
+from utils import rnd
+
+from account import models as account_models
+from notebook import models as notebook_models
 
 
 def prepare_notebook():
     """Generate notebook testing data
     """
-    print('Create data for NOTEBOOK app:', end=' ', flush=True)
+    print('Create data for NOTEBOOK app:')
+    user = account_models.SchoolUser.objects.get(username='sam')
+    n = 5
+    print('    {:.<25}...'.format(f'sam - {n} records'), end='', flush=True)
+    for i in range(n):
+        note = rnd.new_note()
+        notebook_models.NotebookRecord(
+            user=user,
+            title=note['title'],
+            text=note['text']
+        ).save()
     print('OK')
 
 
