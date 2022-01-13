@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'news.apps.NewsConfig',
     'timetable.apps.TimetableConfig',
-    'diary.apps.DiaryConfig'
+    'diary.apps.DiaryConfig',
+    'notebook.apps.NotebookConfig'
 ]
 
 DATABASES = {

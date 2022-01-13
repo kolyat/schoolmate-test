@@ -5,7 +5,8 @@ Automated testing framework for Schoolmate project
 Contents
 ========
 
-* | Applications: ``account``, ``diary``, ``news``, ``school``, ``timetable``.
+* | Applications: ``account``, ``diary``, ``news``, ``school``, ``timetable``,
+    ``notebook``.
   | Each directory contains Django application files (``apps.py``,
     ``models.py``), testing scripts with data and ``urls``, and database
     ``management`` commands with predefined test data.

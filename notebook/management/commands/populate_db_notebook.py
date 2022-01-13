@@ -14,33 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import os
-
-from utils import db
+from django.core.management import base
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
-APPS = (
-    'school',
-    'account',
-    'news',
-    'timetable',
-    'diary',
-    'notebook'
-)
+def prepare_notebook():
+    """Generate notebook testing data
+    """
+    print('Create data for NOTEBOOK app:', end=' ', flush=True)
+    print('OK')
 
 
-def prepare():
-    import django
-    django.setup()
-    from django.conf import settings
-    _db = db.Db(settings.DATABASES['default'], settings.BASE_DIR)
+class Command(base.BaseCommand):
+    requires_migrations_checks = False
 
-    for a in reversed(APPS):
-        _db.clear(a)
-    for a in APPS:
-        _db.populate(a)
-
-
-if __name__ == '__main__':
-    prepare()
+    def handle(self, *args, **options):
+        prepare_notebook()

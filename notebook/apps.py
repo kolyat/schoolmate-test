@@ -14,33 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import os
-
-from utils import db
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
-APPS = (
-    'school',
-    'account',
-    'news',
-    'timetable',
-    'diary',
-    'notebook'
-)
+from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
 
-def prepare():
-    import django
-    django.setup()
-    from django.conf import settings
-    _db = db.Db(settings.DATABASES['default'], settings.BASE_DIR)
-
-    for a in reversed(APPS):
-        _db.clear(a)
-    for a in APPS:
-        _db.populate(a)
-
-
-if __name__ == '__main__':
-    prepare()
+class NotebookConfig(AppConfig):
+    name = 'notebook'
+    verbose_name = _('Notebook')

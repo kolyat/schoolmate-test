@@ -14,33 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import os
+from django.core.management import base
 
-from utils import db
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
-APPS = (
-    'school',
-    'account',
-    'news',
-    'timetable',
-    'diary',
-    'notebook'
-)
+from notebook import models as notebook_models
 
 
-def prepare():
-    import django
-    django.setup()
-    from django.conf import settings
-    _db = db.Db(settings.DATABASES['default'], settings.BASE_DIR)
-
-    for a in reversed(APPS):
-        _db.clear(a)
-    for a in APPS:
-        _db.populate(a)
+def clear_notebook():
+    """remove all notebook records
+    """
+    print('Remove NOTEBOOK app data...', end=' ', flush=True)
+    notebook_models.NotebookRecord.objects.all().delete()
+    print('OK')
 
 
-if __name__ == '__main__':
-    prepare()
+class Command(base.BaseCommand):
+    requires_migrations_checks = False
+
+    def handle(self, *args, **options):
+        clear_notebook()
