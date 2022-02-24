@@ -12,10 +12,9 @@ def db_prepare():
 
 @pytest.fixture(scope='session')
 def apiclient():
-    _client = client.ApiClient()
-    _user = config.current_config.get_user()
-    # _client.set_auth(_user['username'], _user['password'])
-    _client.login(_user['username'], _user['password'])
+    user = config.current_config.get_user()
+    _client = client.ApiClient(user['username'], user['password'])
+    _client.login()
     yield _client
     _client.logout()
 
