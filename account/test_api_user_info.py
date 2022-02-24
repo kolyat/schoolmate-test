@@ -17,25 +17,60 @@
 import logging
 import pytest
 
-import config
 from . import urls, data_test_api_user_info
 
 
-u = config.current_config.full_url
-
-
-def test_get_user_info(apiclient):
-    """Get user info
+def test_get_username(apiclient):
+    """Get username.
 
     :param apiclient: :class:`utils.client.ApiClient` instance
     """
-    response = apiclient.get(u(urls.USER_INFO))
+    response = apiclient.get(urls.USER_NAME)
     assert response.status_code == 200
     body = response.json()
-    logging.debug(body)
+    assert body['username'] == apiclient.username
+
+
+def test_change_username(apiclient):
+    f"""Try to change username via {urls.USER_NAME}.
+
+    :param apiclient: :class:`utils.client.ApiClient` instance
+    """
+    data = {'username': 'admin'}
+    response = apiclient.post(urls.USER_NAME, data=data)
+    assert response.status_code == 405
+    response = apiclient.put(urls.USER_NAME, data=data)
+    assert response.status_code == 405
+    response = apiclient.patch(urls.USER_NAME, data=data)
+    assert response.status_code == 405
+
+
+def test_get_user_info(apiclient):
+    """Get user info.
+
+    :param apiclient: :class:`utils.client.ApiClient` instance
+    """
+    response = apiclient.get(urls.USER_INFO)
+    assert response.status_code == 200
+    body = response.json()
     assert data_test_api_user_info.validate(body) is not None
 
 
+def test_change_user_info(apiclient):
+    f"""Try to change username via {urls.USER_INFO}.
+
+    :param apiclient: :class:`utils.client.ApiClient` instance
+    """
+    data = {'username': 'admin', 'email': 'email@changed.xxx'}
+    response = apiclient.post(urls.USER_INFO, data=data)
+    assert response.status_code == 405
+    response = apiclient.put(urls.USER_INFO, data=data)
+    assert response.status_code == 405
+    response = apiclient.patch(urls.USER_INFO, data=data)
+    assert response.status_code == 405
+
+
+# TODO: continue here
 @pytest.mark.parametrize('payload, response_status, response_body',
                          data_test_api_user_info.user_info_cases)
 def test_change_user_info(apiclient, payload: dict, response_status: int,
