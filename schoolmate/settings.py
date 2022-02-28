@@ -59,4 +59,7 @@ SKINS = (                   # i =
 )
 DEFAULT_SKIN = SKINS[1][0]  # SKINS[i][0]
 
+FORM_NUMBERS = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+FORM_LETTERS = 'АБВГД'
+
 LATEST_NEWS_COUNT = 300
