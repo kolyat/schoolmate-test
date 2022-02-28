@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import pytest
 
 from . import urls, data_test_api_user_info
@@ -70,12 +69,11 @@ def test_change_user_info(apiclient):
     assert response.status_code == 405
 
 
-# TODO: continue here
 @pytest.mark.parametrize('payload, response_status, response_body',
-                         data_test_api_user_info.user_info_cases)
-def test_change_user_info(apiclient, payload: dict, response_status: int,
-                          response_body: dict):
-    """Change user info
+                         data_test_api_user_info.user_settings)
+def test_change_user_settings(apiclient, payload: dict, response_status: int,
+                              response_body: dict):
+    """Change user settings.
 
     :param apiclient: :class:`utils.client.ApiClient` instance
 
@@ -88,12 +86,24 @@ def test_change_user_info(apiclient, payload: dict, response_status: int,
     :param response_body: expected body in response
     :type response_body: dict
     """
-    response = apiclient.patch(u(urls.USER_INFO), data=payload)
+    response = apiclient.patch(urls.USER_SETTINGS, data=payload)
     assert response.status_code == response_status
     if response.status_code < 300:
         body = response.json()
-        logging.debug(body)
         assert set(response_body.items()) <= set(body.items())
+
+
+def test_change_user_email(apiclient):
+    f"""Try to change e-mail via {urls.USER_SETTINGS}.
+
+    :param apiclient: :class:`utils.client.ApiClient` instance
+    """
+    fake_email = 'x@x.xx'
+    response = apiclient.patch(urls.USER_SETTINGS, data={'email': fake_email})
+    assert response.status_code == 200
+    response = apiclient.get(urls.USER_INFO)
+    body = response.json()
+    assert body['email'] != fake_email
 
 
 if __name__ == '__main__':

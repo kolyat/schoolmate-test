@@ -85,15 +85,14 @@ validate = compile({
     ]
 })
 
-user_info_cases = (
-    ({'language': 'de'}, 202, {'language': 'de'}),
-    ({'language': 'xxx'}, 400, {}),
-    ({'language': 123}, 400, {}),
-    ({'language': ''}, 202, {}),
-    ({'skin': 'material'}, 202, {'skin': 'material'}),
-    ({'skin': 'xxx'}, 400, {}),
-    ({'skin': 123}, 400, {}),
-    ({'skin': ''}, 202, {}),
-    ({'email': 'x@x.xx'}, 202, {}),
-    ({}, 202, {})
+user_settings = (
+    ({'language': 'de'},   200, {'language': 'de'}),
+    ({'language': 'xxx'},  400, {}),
+    ({'language': 123},    400, {}),
+    ({'language': ''},     200, {}),
+    ({'skin': 'material'}, 200, {'skin': 'material'}),
+    ({'skin': 'xxx'},      400, {}),
+    ({'skin': 123},        400, {}),
+    ({'skin': ''},         200, {}),
+    ({},                   200, {})
 )
