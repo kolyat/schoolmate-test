@@ -14,25 +14,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import pytest
 
-import config
 from . import urls, data_test_api_news
 
 
-u = config.current_config.full_url
-
-
 def test_news(apiclient):
-    """Get news
+    """Get news.
 
     :param apiclient: :class:`utils.client.ApiClient` instance
     """
-    response = apiclient.get(u(urls.NEWS))
+    response = apiclient.get(urls.NEWS)
     assert response.status_code == 200
     body = response.json()
-    logging.debug(body)
     assert data_test_api_news.validate(body) is not None
 
 
