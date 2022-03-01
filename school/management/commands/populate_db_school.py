@@ -16,6 +16,7 @@
 
 from django.core.management import base
 
+from schoolmate import settings
 from school import models as school_models
 from . import _db_data
 
@@ -28,7 +29,7 @@ def prepare_school():
     for l in _db_data.FORM_LETTERS:
         school_models.FormLetter(letter=l).save()
     _letters = school_models.FormLetter.objects.all()
-    for n in school_models.FORM_NUMBERS:
+    for n in settings.FORM_NUMBERS:
         _number = school_models.FormNumber(number=n)
         _number.save()
         for l in _letters:
