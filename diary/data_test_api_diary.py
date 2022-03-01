@@ -68,39 +68,39 @@ auth_data = (
 )
 
 template = {
-    'lesson_number': 3,
+    'lesson_number': 5,
     'subject': 'Физика',
     'text': 'Some text here'
 }
 
 positive_cases = (
-    ({'lesson_number': 3}, 201),
-    ({'lesson_number': 1}, 201),
-    ({'lesson_number': 7}, 201),
-    ({'subject': 'Алгебра'}, 202),
-    ({'subject': ' '}, 202),
-    ({'text': 'For testing'}, 202),
-    ({'text': rnd.random_str(9000)}, 202),
-    ({'text': ''}, 202)
+    ({'lesson_number': 1},           201, True),
+    ({'lesson_number': 3},           201, True),
+    ({'lesson_number': '3'},         202, False),
+    ({'lesson_number': 7},           201, True),
+    ({'subject': 'Алгебра'},         201, True),
+    ({'subject': ' '},               202, True),
+    ({'text': 'For testing'},        202, True),
+    ({'text': rnd.random_str(9000)}, 202, True),
+    ({'text': None},                 202, False),
+    ({'text': ''},                   202, True),
+    ({'text': 123},                  202, False)
 )
 
 negative_cases = (
-    ({'lesson_number': -1}, 400),
-    ({'lesson_number': 0}, 400),
-    ({'lesson_number': 8}, 400),
-    ({'lesson_number': 100}, 400),
-    ({'lesson_number': 3.5}, 400),
-    ({'lesson_number': '3'}, 201),
-    ({'lesson_number': None}, 400),
+    ({'lesson_number': -1},     400),
+    ({'lesson_number': 0},      400),
+    ({'lesson_number': 8},      400),
+    ({'lesson_number': 100},    400),
+    ({'lesson_number': 3.5},    400),
+    ({'lesson_number': None},   400),
     ({'subject': 'no_subject'}, 400),
-    ({'subject': None}, 400),
-    ({'subject': 123}, 400),
-    ({'text': 123}, 202),
-    ({'text': None}, 202)
+    ({'subject': None},         400),
+    ({'subject': 123},          400)
 )
 
 incomplete_payload = (
     ({'subject': 'Физика', 'text': 'Some text here'}, 400),
-    ({'lesson_number': 3, 'text': 'Some text here'}, 400),
-    ({'lesson_number': 3, 'subject': 'Физика'}, 201)
+    ({'lesson_number': 3, 'text': 'Some text here'},  400),
+    ({'lesson_number': 3, 'subject': 'Физика'},       201)
 )
