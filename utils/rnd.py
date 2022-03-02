@@ -27,7 +27,7 @@ FORM_LETTERS = 'АБ'
 
 
 def random_char() -> str:
-    """Get random UTF-8 character
+    """Get random UTF-8 character.
 
     :return: non-space printable unicode character
     :rtype: str
@@ -40,7 +40,7 @@ def random_char() -> str:
 
 
 def random_str(length: int = 9) -> str:
-    """Get string with random UTF-8 characters
+    """Get string with random UTF-8 characters.
 
     :param length: string's length (default = 9)
     :type length: int
@@ -52,7 +52,7 @@ def random_str(length: int = 9) -> str:
 
 
 def random_numstr(length: int = 9) -> str:
-    """Get string with digits
+    """Get string with digits.
 
     :param length: string's length (default = 9)
     :type length: int
@@ -64,7 +64,7 @@ def random_numstr(length: int = 9) -> str:
 
 
 def random_id() -> int:
-    """Generate id between 100000 and 999999 inclusive
+    """Generate id between 100000 and 999999 inclusive.
 
     :return: random id
     :rtype: int
@@ -74,7 +74,7 @@ def random_id() -> int:
 
 
 def new_schoolform() -> dict:
-    """Generate school form data
+    """Generate school form data.
 
     :return: dictionary with school form number and letter
     :rtype: dict
@@ -86,7 +86,7 @@ def new_schoolform() -> dict:
 
 
 def new_schooluser() -> dict:
-    """Generate data for fake school user
+    """Generate data for fake school user.
 
     :return: dictionary with personal data
     :rtype: dict
@@ -115,7 +115,7 @@ def new_schooluser() -> dict:
 
 
 def new_article() -> dict:
-    """Generate news article
+    """Generate news article.
 
     :return: dictionary with title and text
     :rtype: dict
@@ -129,7 +129,7 @@ def new_article() -> dict:
 
 
 def new_note() -> dict:
-    """Generate notebook record
+    """Generate notebook record.
 
     :return: dictionary with title and text
     :rtype: dict

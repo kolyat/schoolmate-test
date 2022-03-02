@@ -93,7 +93,7 @@ class Config(dict):
         return self['logging']
 
     def get_user(self, target: str = 'default', user: str = 'default') -> dict:
-        """Get user's registration data
+        """Get user's registration data.
 
         :param target: testing target (set to "default")
         :type target: str
@@ -109,7 +109,7 @@ class Config(dict):
         return _user
 
     def full_url(self, path: str, target: str = 'default') -> str:
-        """Returns fully qualified URL
+        """Returns fully qualified URL.
 
         :param path: path to endpoint (e. g., "/endpoint/example")
         :type path: str
@@ -129,7 +129,7 @@ httpclient_logger = logging.getLogger('http.client')
 
 
 def httpclient_logging_patch(level: int = logging.DEBUG) -> None:
-    """Enable HTTPConnection debug logging to the logging framework
+    """Enable HTTPConnection debug logging to the logging framework.
 
     :param level: logging level (logging.DEBUG = 10 by default)
     :type level: int
