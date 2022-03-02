@@ -16,7 +16,7 @@
 
 from fastjsonschema import compile
 
-from .urls import TIMETABLE_DATA as p
+from .urls import TIMETABLE_DATA
 
 
 validate = compile({
@@ -53,18 +53,14 @@ validate = compile({
     }
 })
 
-positive_cases = (
-    (p + '9', 200, validate),
-    (p + '0', 200, validate)
-)
-empty_cases = (
-    (p + '999', 200, []),
-    (p, 200, []),
-    (p + '?form_number=-1', 200, []),
-    (p + '?form_number=abc', 200, []),
-    (p + '?form_number=', 200, [])
-)
-error_cases = (
-    (p + '-1', 404),
-    (p + 'xyz', 404)
+url = f'{TIMETABLE_DATA}?form_number='
+
+cases = (
+    (TIMETABLE_DATA, 200),
+    (f'{url}-1',     200),
+    (f'{url}0',      200),
+    (f'{url}9',      200),
+    (f'{url}999',    200),
+    (f'{url}abc',    200),
+    (url,            200)
 )

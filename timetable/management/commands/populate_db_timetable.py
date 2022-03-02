@@ -42,8 +42,11 @@ def prepare_timetable(forms=None):
             form_number__in=numbers)
     else:
         _forms = school_models.SchoolForm.objects.all()
-    _timetable_forms = [timetable_models.TimetableSchoolForm(
-        year=_timetable_year, school_form=f) for f in _forms]
+    _timetable_forms = [
+        timetable_models.TimetableSchoolForm(
+            year=_timetable_year, school_form=f
+        ) for f in _forms
+    ]
     [f.save() for f in _timetable_forms]
     print('OK')
     print('    {:.<30}...'.format('Timetable'), end='', flush=True)

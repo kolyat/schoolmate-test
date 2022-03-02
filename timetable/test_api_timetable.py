@@ -14,66 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import pytest
 
-import config
 from . import data_test_api_timetable
 
 
-u = config.current_config.full_url
-
-
-@pytest.mark.parametrize('url, response_status, validate',
-                         data_test_api_timetable.positive_cases)
-def test_positive_cases(apiclient, url: str, response_status: int, validate):
-    """Positive cases with response data
-
-    :param apiclient: :class:`utils.client.ApiClient` instance
-
-    :param url: endpoint URL
-    :type url: str
-
-    :param response_status: expected response status
-    :type response_status: int
-
-    :param validate: schema validation function for response data
-    """
-    response = apiclient.get(u(url))
-    assert response.status_code == response_status
-    body = response.json()
-    logging.debug(body)
-    assert validate(body) is not None
-
-
-@pytest.mark.parametrize('url, response_status, expected_body',
-                         data_test_api_timetable.empty_cases)
-def test_empty_cases(apiclient, url: str , response_status: int,
-                     expected_body: list):
-    """Cases with empty response data
-
-    :param apiclient: :class:`utils.client.ApiClient` instance
-
-    :param url: endpoint URL
-    :type url: str
-
-    :param response_status: expected response status
-    :type response_status: int
-
-    :param expected_body: expected body of response
-    :type expected_body: list
-    """
-    response = apiclient.get(u(url))
-    assert response.status_code == response_status
-    body = response.json()
-    logging.debug(body)
-    assert body == expected_body
-
-
 @pytest.mark.parametrize('url, response_status',
-                         data_test_api_timetable.error_cases)
-def test_error_cases(apiclient, url: str, response_status: int):
-    """Test behaviour with invalid url
+                         data_test_api_timetable.cases)
+def test_get_timetable(apiclient, url: str, response_status: int):
+    """Retrieve timetable.
 
     :param apiclient: :class:`utils.client.ApiClient` instance
 
@@ -83,8 +32,10 @@ def test_error_cases(apiclient, url: str, response_status: int):
     :param response_status: expected response status
     :type response_status: int
     """
-    response = apiclient.get(u(url))
+    response = apiclient.get(url)
     assert response.status_code == response_status
+    body = response.json()
+    assert data_test_api_timetable.validate(body) is not None
 
 
 if __name__ == '__main__':
