@@ -33,8 +33,9 @@ def prepare_school():
         _number = school_models.FormNumber(number=n)
         _number.save()
         for l in _letters:
-            school_models.SchoolForm(form_number=_number,
-                                     form_letter=l).save()
+            school_models.SchoolForm(
+                form_number=_number, form_letter=l
+            ).save()
     print('OK')
     print('    {:.<30}...'.format('School subjects'), end='', flush=True)
     for s in _db_data.SUBJECTS:

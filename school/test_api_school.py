@@ -14,19 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import pytest
 
-import config
 from . import data_test_api_school
-
-
-u = config.current_config.full_url
 
 
 @pytest.mark.parametrize('url, validate', data_test_api_school.endpoints)
 def test_endpoints(apiclient, url: str, validate):
-    """Test 'school' endpoints
+    """Test 'school' endpoints.
 
     :param apiclient: :class:`utils.client.ApiClient` instance
 
@@ -35,10 +30,9 @@ def test_endpoints(apiclient, url: str, validate):
 
     :param validate: schema validation function for response data
     """
-    response = apiclient.get(u(url))
+    response = apiclient.get(url)
     assert response.status_code == 200
     body = response.json()
-    logging.debug(body)
     assert validate(body) is not None
 
 

@@ -32,6 +32,8 @@ endpoints = (
                     'items': {
                         'type': 'object',
                         'properties': {
+                            'start_date': {'type': 'string', 'format': 'date'},
+                            'end_date': {'type': 'string', 'format': 'date'},
                             'period_type': {'type': 'string', 'minLength': 1},
                             'description': {'type': 'string', 'minLength': 0}
                         },
@@ -103,9 +105,10 @@ endpoints = (
             'items': {
                 'type': 'object',
                 'properties': {
-                    'description': {'type': 'string', 'minLength': 1},
                     'start_date': {'type': 'string', 'format': 'date'},
                     'end_date': {'type': 'string', 'format': 'date'},
+                    'period_type': {'type': 'string', 'minLength': 1},
+                    'description': {'type': 'string', 'minLength': 0}
                 },
                 'additionalProperties': False,
                 'required': ['description', 'start_date', 'end_date']
