@@ -42,4 +42,5 @@ How to use
      pip install -r requirements.txt
 4. Set up ``schoolmate/settings.py``, ``config.json``, ``pytest.ini``.
 5. Run ``update_apps.sh``.
-6. Run ``pytest`` (``prepare_db.py`` is launched automatically).
+6. Run ``pytest`` (use ``--prepare-db`` to populate database with predefined
+   testing data).

@@ -5,9 +5,14 @@ import config
 import prepare_db
 
 
+def pytest_addoption(parser):
+    parser.addoption('--prepare-db', action='store_const', const=True)
+
+
 @pytest.fixture(scope='session', autouse=True)
-def db_prepare():
-    prepare_db.prepare()
+def db_prepare(request):
+    if request.config.getoption('--prepare-db'):
+        prepare_db.prepare()
 
 
 @pytest.fixture(scope='session')
